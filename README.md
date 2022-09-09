@@ -1,2 +1,8 @@
 # typescript-express-openapi-generator
-Yet another TypeScript OpenAPI generator for Express
+
+This is a TypeScript (node.js) OpenAPI generator for REST services
+using Express.
+
+## How to install
+
+This project requires Node to be installed.
