@@ -359,13 +359,19 @@
                 routeBody += '            try {\n';
 
                 if (responseReturnType !== 'void') {
-                    routeBody += `                const results = await controller.${delegateAccessorName}.${operation}({\n`;
+                    routeBody += `                const results = await controller.${delegateAccessorName}.${operation}(`;
                 } else {
-                    routeBody += `                await controller.${delegateAccessorName}.${operation}({\n`;
+                    routeBody += `                await controller.${delegateAccessorName}.${operation}(`;
                 }
 
-                routeBody += `                    ${parameters.join(',\n                ')}${parameters.length > 0 ? ',' : ''}\n`;
-                routeBody += '                });\n\n';
+                if (parameters.length > 0) {
+                    routeBody += '{\n';
+                    routeBody += `                    ${parameters.join(',\n                ')}${parameters.length > 0 ? ',' : ''}\n`;
+                    routeBody += '                });\n\n';
+                } else {
+                    routeBody += '();\n\n';
+                }
+                
                 routeBody += '                res.type(\'application/json\');\n';
 
                 if (responseReturnType !== 'void') {
