@@ -41,10 +41,7 @@
     }
 
     function showHelp() {
-        console.log('TypeScript Express OpenAPI Generator');
-        console.log('');
         console.log('Usage: tseo-gen [OpenAPI YAML file] <options>');
-        console.log('');
         console.log('Where <options> are:');
         console.log('    -b [name]    The base name of the generator when creating collection classes (default \'Generated\')');
         console.log('    -da [name]   The directory where API files will be generated (default \'src/api\')');
@@ -176,7 +173,7 @@
                 const classes = new Set();
 
                 if (def['parameters']) {
-                    for (const param of def['parameters']) {
+                    def['parameters'].forEach((param) => {
                         const { name, schema } = param;
                         const paramRequired = param['required'] ?? false;
                         const paramType = parseSchemaForType(schema);
@@ -186,7 +183,7 @@
                         if (paramType.isClass) {
                             classes.add(paramType.name);
                         }
-                    }
+                    });
                 }
 
                 if (def['requestBody']) {
@@ -371,7 +368,7 @@
                 } else {
                     routeBody += '();\n\n';
                 }
-                
+
                 routeBody += '                res.type(\'application/json\');\n';
 
                 if (responseReturnType !== 'void') {
