@@ -17,8 +17,8 @@
   "bin": {
     "tseo-gen": "./bin/tseo-gen.ts"
   },
-  "author": "team@objectified.dev",
-  "license": "PRIVATE",
+  "author": "ksuenobu@fastmail.com",
+  "license": "Apache License 2.0",
   "files": [
     "/dist"
   ],
