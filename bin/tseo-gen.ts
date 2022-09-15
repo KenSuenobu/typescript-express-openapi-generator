@@ -5,6 +5,8 @@
 
 (async () => {
 
+    const args = process.argv.splice(2);
+
     function parseSchemaForType(schema) {
         if (schema['type']) {
             if (schema['type'] === 'integer') {
@@ -41,7 +43,7 @@
     }
 
     function showHelp() {
-        console.log('Usage: tseo-gen [OpenAPI YAML file] <options>');
+        console.log('Usage: tseo-gen.ts [OpenAPI YAML file] <options>');
         console.log('Where <options> are:');
         console.log('    -b [name]    The base name of the generator when creating collection classes (default \'Generated\')');
         console.log('    -da [name]   The directory where API files will be generated (default \'src/api\')');
@@ -49,19 +51,19 @@
         process.exit(0);
     }
 
-    if (process.argv.includes('-h') || process.argv.includes('--help') || process.argv.length === 2) {
+    if (args.includes('-h') || args.includes('--help') || args.length === 0) {
         showHelp();
     }
 
-    const openApiFile = process.argv[2];
+    const openApiFile = args[0];
     let dirApi = 'src/api';
     let dirRoutes = 'src/routes';
     let baseName = 'Generated';
 
-    for(let i = 3; i < process.argv.length; i++) {
-        if (process.argv[i] === '-b') {
+    for(let i = 1; i < args.length; i++) {
+        if (args[i] === '-b') {
             try {
-                baseName = process.argv[++i];
+                baseName = args[++i];
                 continue;
             } catch (e) {
                 console.log('-b requires an argument.');
@@ -69,9 +71,9 @@
             }
         }
 
-        if (process.argv[i] === '-da') {
+        if (args[i] === '-da') {
             try {
-                dirApi = process.argv[++i];
+                dirApi = args[++i];
                 continue;
             } catch (e) {
                 console.log('-da requires an argument.');
@@ -79,9 +81,9 @@
             }
         }
 
-        if (process.argv[i] === '-dr') {
+        if (args[i] === '-dr') {
             try {
-                dirRoutes = process.argv[++i];
+                dirRoutes = args[++i];
                 continue;
             } catch (e) {
                 console.log('-dr required an argument.');
@@ -200,7 +202,7 @@
                 }
 
                 Array.from(classes.values()).forEach((x) => {
-                    const className = x;
+                    const className = x as string;
 
                     header += `import { ${className} } from '../model/${className.substring(0, 1).toLowerCase() + className.substring(1)}';\n`;
                 });
