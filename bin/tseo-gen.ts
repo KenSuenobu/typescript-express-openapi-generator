@@ -353,7 +353,7 @@
                 // Replace any occurrences of "{variable}" with ":variable" for REST notation
                 path = path.replace(/\{(\w+)}/, ':$1');
 
-                routeBody += `        /**\n         * ${comment}\n         /*\n`;
+                routeBody += `        /**\n         * ${comment}\n         */\n`;
                 routeBody += `        app.${op}('${path}', async (req, res) => {\n`;
                 routeBody += '            try {\n';
 
