@@ -5,9 +5,7 @@
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
   "scripts": {
-    "generate": "mkdir -p src ; openapi-generator generate -i openapi/main.yml -g typescript-node ; rm -rf api api.ts git_push.sh ; rm -rf src/model ; mv model src",
-    "generateOpenapi": "mkdir -p src/api ; ts-node bin/generator.ts",
-    "build": "npm run generate ; npm run generateOpenapi ; tsc",
+    "build": "tsc",
     "test": "echo No tests currently."
   },
   "compilerOptions": {
