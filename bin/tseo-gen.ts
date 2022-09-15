@@ -363,13 +363,9 @@
                     routeBody += `                await controller.${delegateAccessorName}.${operation}(`;
                 }
 
-                if (parameters.length > 0) {
-                    routeBody += '{\n';
-                    routeBody += `                    ${parameters.join(',\n                ')}${parameters.length > 0 ? ',' : ''}\n`;
-                    routeBody += '                });\n\n';
-                } else {
-                    routeBody += '();\n\n';
-                }
+                routeBody += '{\n';
+                routeBody += `                    ${parameters.join(',\n                ')}${parameters.length > 0 ? ',' : ''}\n`;
+                routeBody += '                });\n\n';
 
                 routeBody += '                res.type(\'application/json\');\n';
 
