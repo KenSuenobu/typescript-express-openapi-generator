@@ -1,0 +1,28 @@
+openapi: "3.0.0"
+info:
+  version: 1.0.0
+  title: Example
+  contact:
+    name: Example OpenAPI Spec
+    url: https://www.google.com/
+    email: ksuenobu@fastmail.com
+  description: |
+    This is an example service provided by the TypeScript Express OpenAPI generator.
+  license:
+    name: Apache License 2.0
+servers:
+  - url: http://localhost:8080
+tags:
+  - name: Examples
+    description: |
+      Handles requests from the Example service.
+paths:
+  /example/hello:
+    get:
+      tags:
+        - Examples
+      description: Hello World
+      operationId: generateHelloWorld
+      responses:
+        '200':
+          description: OK
