@@ -18,7 +18,7 @@ import {ExampleRouter} from "../src/routes/ExampleRouter";
     const port = 3000;
     const controller: ExampleController = new ExampleController();
 
-    controller.examplesDelegateImpl = new HelloWorld();
+    controller.examplesDelegate = new HelloWorld();
     ExampleRouter.registerAll(app, controller);
 
     app.listen(port, () => {

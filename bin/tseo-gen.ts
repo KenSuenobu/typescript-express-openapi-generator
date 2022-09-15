@@ -277,8 +277,8 @@
     controllerBody += `export class ${baseName}Controller {\n\n`;
 
     Object.keys(tagFunctions).forEach((tagName) => {
-        const delegateName = `${tagName.toLowerCase().substring(0, 1) + tagName.substring(1)}ApiDelegateImpl`;
-        const delegateAccessorName = `${tagName.toLowerCase().substring(0, 1) + tagName.substring(1)}DelegateImpl`;
+        const delegateName = `${tagName.toLowerCase().substring(0, 1) + tagName.substring(1)}ApiDelegate`;
+        const delegateAccessorName = `${tagName.toLowerCase().substring(0, 1) + tagName.substring(1)}Delegate`;
 
         controllerBody += `    private ${delegateName} = new ${tagName}APIDelegate();\n`;
         accessorBody += `    public get ${delegateAccessorName}(): ${tagName}APIDelegate {\n`
@@ -307,7 +307,7 @@
           + `\`${baseName}Controller\` to call delegate functions when a service is requested.\n     */\n`;
         routeBody += `    static register(app: Application, controller: ${baseName}Controller) {\n`;
 
-        const delegateAccessorName = `${tagName.toLowerCase().substring(0, 1) + tagName.substring(1)}DelegateImpl`;
+        const delegateAccessorName = `${tagName.toLowerCase().substring(0, 1) + tagName.substring(1)}Delegate`;
 
         Object.keys(tagFunctions[tagName]).forEach((op) => {
             tagFunctions[tagName][op].forEach((def) => {
